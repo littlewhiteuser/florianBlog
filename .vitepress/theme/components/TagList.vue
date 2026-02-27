@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress'
+
 defineProps<{
   tags: string[]
 }>()
@@ -9,7 +11,7 @@ defineProps<{
     <a
       v-for="tag in tags"
       :key="tag"
-      :href="`/tags?tag=${tag}`"
+      :href="withBase(`/tags?tag=${tag}`)"
       class="blog-tag"
     >
       {{ tag }}

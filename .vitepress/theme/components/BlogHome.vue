@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { data as posts } from '../utils/posts.data.mts'
 import ArticleCard from './ArticleCard.vue'
 import BlogInfoCard from './BlogInfoCard.vue'
@@ -59,7 +59,7 @@ const friends = [
           <ArticleCard v-for="post in latestPosts" :key="post.url" :post="post" />
         </div>
         <div v-if="posts.length > pageSize" style="text-align: center; margin-top: 32px;">
-          <a href="/blog/" class="blog-tag" style="font-size: 0.92rem; padding: 8px 24px;">
+          <a :href="withBase('/blog/')" class="blog-tag" style="font-size: 0.92rem; padding: 8px 24px;">
             查看全部文章 →
           </a>
         </div>
@@ -70,7 +70,7 @@ const friends = [
         <!-- 个人信息卡片 -->
         <div class="profile-card">
           <div class="profile-card__avatar">
-            <img src="/avatar.jpg" alt="avatar" />
+            <img :src="withBase('/avatar.jpg')" alt="avatar" />
           </div>
           <h2 class="profile-card__name">Florian</h2>
           <p class="profile-card__desc">专注于前端开发与全栈技术探索</p>
@@ -96,7 +96,7 @@ const friends = [
             <a
               v-for="([tag, count], idx) in allTags"
               :key="tag"
-              :href="`/tags?tag=${tag}`"
+              :href="withBase(`/tags?tag=${tag}`)"
               class="blog-tag color-tag"
               :class="`color-tag--${idx % 8}`"
             >

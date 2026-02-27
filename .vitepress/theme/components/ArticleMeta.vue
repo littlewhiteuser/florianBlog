@@ -3,7 +3,7 @@
  * 文章元信息组件（借鉴 @sugarat/theme 的文章元信息展示）
  * 显示作者、日期、阅读时间、字数统计、标签
  */
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 import { computed, onMounted, ref } from 'vue'
 import { formatRelativeDate, estimateReadingTime } from '../utils/index'
 
@@ -60,13 +60,13 @@ const showMeta = computed(() => date.value || tags.value.length > 0)
       </span>
     </div>
     <div class="article-meta__tags" v-if="tags.length || category">
-      <a v-if="category" class="blog-tag" :href="`/tags?tag=${category}`">
+      <a v-if="category" class="blog-tag" :href="withBase(`/tags?tag=${category}`)">
         📂 {{ category }}
       </a>
       <a
         v-for="tag in tags"
         :key="tag"
-        :href="`/tags?tag=${tag}`"
+        :href="withBase(`/tags?tag=${tag}`)"
         class="blog-tag"
       >
         {{ tag }}
