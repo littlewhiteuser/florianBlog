@@ -2,6 +2,7 @@
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
+import { useData } from 'vitepress'
 import BlogHome from './components/BlogHome.vue'
 import BlogPosts from './components/BlogPosts.vue'
 import BlogTags from './components/BlogTags.vue'
@@ -45,6 +46,7 @@ export default {
       document.querySelectorAll('[id^="oml2d"]').forEach(el => el.remove())
 
       const { loadOml2d } = await import('oh-my-live2d')
+      const base = import.meta.env.BASE_URL || '/'
       loadOml2d({
         dockedPosition: 'left',
         mobileDisplay: false,
@@ -57,7 +59,7 @@ export default {
         },
         models: [
           {
-            path: '/live2d/Senko_Normals/senko.model3.json',
+            path: `${base}live2d/Senko_Normals/senko.model3.json`,
             position: [-10, 20],
             scale: 0.08,
             stageStyle: {
