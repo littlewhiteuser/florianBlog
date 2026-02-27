@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { data as posts } from '../utils/posts.data.mts'
+import { withBase } from 'vitepress'
 import { computed } from 'vue'
 
 // 按年份分组
@@ -31,7 +32,7 @@ const totalPosts = computed(() => posts.length)
       <ul class="blog-archives__list">
         <li v-for="post in yearPosts" :key="post.url" class="blog-archives__item">
           <span class="blog-archives__item-date">{{ post.date.slice(5) }}</span>
-          <a :href="post.url" class="blog-archives__item-link">{{ post.title }}</a>
+          <a :href="withBase(post.url)" class="blog-archives__item-link">{{ post.title }}</a>
         </li>
       </ul>
     </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Post } from '../utils/posts.data.mts'
 import { formatRelativeDate } from '../utils/index'
+import { withBase } from 'vitepress'
 import { computed } from 'vue'
 
 const props = defineProps<{
@@ -11,7 +12,7 @@ const relativeDate = computed(() => formatRelativeDate(props.post.date))
 </script>
 
 <template>
-  <a :href="post.url" class="article-card" :class="{ 'article-card--has-cover': post.cover }">
+  <a :href="withBase(post.url)" class="article-card" :class="{ 'article-card--has-cover': post.cover }">
     <div class="article-card__content">
       <div class="article-card__top">
         <!-- <span v-if="post.sticky" class="article-card__sticky">📌 置顶</span> -->

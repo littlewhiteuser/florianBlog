@@ -3,6 +3,7 @@
  * 精选文章侧边栏（借鉴 @sugarat/theme 的 hotArticle 和 recommend 功能）
  */
 import { data as posts } from '../utils/posts.data.mts'
+import { withBase } from 'vitepress'
 import { computed, ref } from 'vue'
 
 const pageSize = 5
@@ -49,7 +50,7 @@ function nextPage() {
         :key="post.url"
         class="hot-articles__item"
       >
-        <a :href="post.url" class="hot-articles__link">
+        <a :href="withBase(post.url)" class="hot-articles__link">
           <span class="hot-articles__rank">{{ currentPage * pageSize + index + 1 }}</span>
           <span class="hot-articles__text">{{ post.title }}</span>
         </a>
